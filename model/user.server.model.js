@@ -2,6 +2,7 @@
  * Created by ramijayeshbhai on 22-03-2016.
  */
 var mongoose = require( 'mongoose');
+require( 'mongoose-type-email');
 var Schema = mongoose.Schema;
 
 var userSchema;
@@ -17,7 +18,7 @@ userSchema = new Schema({
     firstname: String,
     lastname: String,
     email: {
-        type: String,
+        type: mongoose.SchemaTypes.Email,
         required: true
     }
 });
