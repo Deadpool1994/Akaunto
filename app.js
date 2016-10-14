@@ -8,6 +8,13 @@ var bodyParser = require('body-parser');
 var routes = require('./routes/index');
 var users = require('./routes/users');
 
+//Added mongo Connection for reference check knowledgebase 
+var mongodb = require('mongodb');
+var mongoose = require('mongoose');
+var db = mongoose.connection;
+
+mongoose.connect('mongodb://localhost/akaunto');
+
 var app = express();
 
 // view engine setup
@@ -23,6 +30,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', routes);
+// app.use('/login', routes);
 app.use('/users', users);
 
 // catch 404 and forward to error handler
@@ -56,5 +64,8 @@ app.use(function(err, req, res, next) {
   });
 });
 
+app.listen(8000,function(){
+  console.log('listening on port 8000...');
+})
 
 module.exports = app;
